@@ -2,6 +2,7 @@ package GNM;
 
 
 import Lattice.Maze;
+import Lattice.Module;
 import Search.*;
 
 
@@ -33,10 +34,14 @@ public class Main {
         bt.findPath();
         ma.showMaze();*/
 
-        IDDFS iddfs = new IDDFS(ma);
+        /*IDDFS iddfs = new IDDFS(ma);
         iddfs.findPath();
-        ma.showMaze();
+        ma.showMaze();*/
 
+        Module mo = new Module(10);
+        GNMSearch hs = new GNMSearch(ma,mo,0);
+        hs.findPath();
+        ma.showMaze();
     }
 
 }

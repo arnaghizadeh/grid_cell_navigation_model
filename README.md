@@ -29,7 +29,7 @@ The maze can be shown in text format on the terminal, with
 ma.showMaze();
 ```
 
-### Algorithms
+### Exploration Algorithms
 In this implementation, four extra algorithms are supported, LRTA*, QLearning, Backtrack, and IDDFS which can be run with:
 
 ```
@@ -49,6 +49,9 @@ IDDFS iddfs = new IDDFS(ma);
 iddfs.findPath();
 ma.showMaze();
 ```
+
+### GNM Algorithm
+
 
 ### Citation
 
