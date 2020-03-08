@@ -2,7 +2,8 @@ package GNM;
 
 
 import Lattice.Maze;
-import Search.QLearning;
+import Search.*;
+
 
 public class Main {
 
@@ -18,12 +19,15 @@ public class Main {
 
 
         Maze ma = new Maze(10, 10, 5, 0, 0, 5, 5);
-        /*ma.showMaze();*/
-
-        QLearning ql = new QLearning(ma);
-        ql.findPath();
         ma.showMaze();
 
+        /*QLearning ql = new QLearning(ma);
+        ql.findPath();
+        ma.showMaze();*/
+
+        LRTA lrta = new LRTA(ma);
+		lrta.findPath();
+        ma.showMaze();
 
     }
 
