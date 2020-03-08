@@ -74,11 +74,8 @@ public class GNMSearch {
 			break;
 		case 1://this is for GNM
 			returnBlock = chooseNextBasic(1);
-			break;	
-		case 2://this is for handling basic low memory
-			returnBlock = chooseNextHandleLowMemoryBetterZeroReset();
 			break;
-		case 3:	//This is for handling probability
+		case 2:	//This is for handling probability
 			returnBlock = chooseNextHandleLowMemoryProbability();
 			break;
 		default:
@@ -156,13 +153,6 @@ public class GNMSearch {
 		}
 		
 		GridCell bestChoice = chooseBestConnectionWithProbability(firedCell1, firedCell2, firedCell3, firedCell4);
-		
-		
-		//TrackCell(firedCell0);
-		
-		/*if(bestChoice == null)
-			return null;*/
-
 		if(bestChoice ==firedCell1){
 			firedCell0.weight++; 
 			firedCell1.weight++;
@@ -282,236 +272,6 @@ public class GNMSearch {
 		}*/
 		return newWeights.get(bestIndex);
 	}
-	
-	private Block chooseNextHandleLowMemoryBetterZeroReset() {
-		GridCell firedCell0 = null;//this is for current state
-		GridCell firedCell1 = null;
-		GridCell firedCell2 = null;
-		GridCell firedCell3 = null;
-		GridCell firedCell4 = null;
-		
-		Block currentState1Xm1Y = realMaze.returnBlock(currentState.xDimention - 1, currentState.yDimention);
-		Block currentState2Xp1Y = realMaze.returnBlock(currentState.xDimention + 1, currentState.yDimention);
-		Block currentState3XYm1 = realMaze.returnBlock(currentState.xDimention, currentState.yDimention - 1);
-		Block currentState4XYp1 = realMaze.returnBlock(currentState.xDimention, currentState.yDimention + 1);
-		
-		firedCell0=firingCell(currentState.xDimention, currentState.yDimention);
-		
-				
-		if((currentState1Xm1Y!=null) && (currentState1Xm1Y.blockStatus!=1)){
-			firedCell1=firingCell(currentState.xDimention - 1, currentState.yDimention);
-			
-			if((firedCell1.viewWeight==0) && (currentState1Xm1Y.blockStatus!=2))
-				P.openNodesCounter++;
-		}
-		if((currentState2Xp1Y!=null) && (currentState2Xp1Y.blockStatus!=1)){
-			firedCell2=firingCell(currentState.xDimention + 1, currentState.yDimention);
-			
-			if((firedCell2.viewWeight==0) && (currentState2Xp1Y.blockStatus!=2))
-				P.openNodesCounter++;
-		}
-		if((currentState3XYm1!=null)&&(currentState3XYm1.blockStatus!=1)){
-			firedCell3=firingCell(currentState.xDimention , currentState.yDimention - 1);
-			
-			if((firedCell3.viewWeight==0)&&(currentState3XYm1.blockStatus!=2))
-				P.openNodesCounter++;
-		}
-		if((currentState4XYp1!=null)&& (currentState4XYp1.blockStatus!=1)){
-			firedCell4=firingCell(currentState.xDimention , currentState.yDimention + 1);
-			
-			if((firedCell4.viewWeight==0)&&(currentState4XYp1.blockStatus!=2))
-				P.openNodesCounter++;
-		}
-		
-		
-		if(P.openNodesCounter==0)
-			return null;
-		
-		//this is to adjust view weights Connections.adjustViewsWeights(firedCell0, firedCell1, firedCell2, firedCell3, firedCell4);
-		if(firedCell1!=null){
-			if(firedCell1.viewWeight==0){
-				firedCell1.lastBlock=currentState1Xm1Y;
-				firedCell1.activeBlock=currentState1Xm1Y;
-				firedCell1.viewWeight=1;
-			}else{				
-				firedCell1.activeBlock=currentState1Xm1Y;
-				if(firedCell1.lastBlock!=firedCell1.activeBlock){
-					firedCell1.lastBlock=firedCell1.activeBlock;
-					firedCell1.viewWeight=0;
-				}
-				firedCell1.viewWeight++;				
-			}
-			if(realMaze.returnBlock(currentState.xDimention - 1, currentState.yDimention).blockStatus==3)
-				return realMaze.returnBlock(currentState.xDimention - 1, currentState.yDimention);
-		}
-		if(firedCell2!=null){
-			if(firedCell2.viewWeight==0){
-				firedCell2.lastBlock=currentState2Xp1Y;
-				firedCell2.activeBlock=currentState2Xp1Y;
-				firedCell2.viewWeight=1;
-			}else{				
-				firedCell2.activeBlock=currentState2Xp1Y;
-				if(firedCell2.lastBlock!=firedCell2.activeBlock){
-					firedCell2.lastBlock=firedCell2.activeBlock;
-					firedCell2.viewWeight=0;
-				}
-				firedCell2.viewWeight++;
-			}
-			if(realMaze.returnBlock(currentState.xDimention + 1, currentState.yDimention).blockStatus==3)
-				return realMaze.returnBlock(currentState.xDimention + 1, currentState.yDimention);
-		}
-		if(firedCell3!=null){
-			if(firedCell3.viewWeight==0){
-				firedCell3.lastBlock=currentState3XYm1;
-				firedCell3.activeBlock=currentState3XYm1;
-				firedCell3.viewWeight=1;
-			}else{				
-				firedCell3.activeBlock=currentState3XYm1;
-				if(firedCell3.lastBlock!=firedCell3.activeBlock){
-					firedCell3.lastBlock=firedCell3.activeBlock;
-					firedCell3.viewWeight=0;
-				}
-				firedCell3.viewWeight++;
-			}
-			if(realMaze.returnBlock(currentState.xDimention, currentState.yDimention - 1).blockStatus==3)
-				return realMaze.returnBlock(currentState.xDimention, currentState.yDimention - 1);
-		}
-		if(firedCell4!=null){
-			if(firedCell4.viewWeight==0){
-				firedCell4.lastBlock=currentState4XYp1;
-				firedCell4.activeBlock=currentState4XYp1;
-				firedCell4.viewWeight=1;
-			}else{				
-				firedCell4.activeBlock=currentState4XYp1;
-				if(firedCell4.lastBlock!=firedCell4.activeBlock){
-					firedCell4.lastBlock=firedCell4.activeBlock;
-					firedCell4.viewWeight=0;
-				}
-				firedCell4.viewWeight++;
-			}			
-			if(realMaze.returnBlock(currentState.xDimention, currentState.yDimention + 1).blockStatus==3)
-				return realMaze.returnBlock(currentState.xDimention, currentState.yDimention + 1);
-		}
-		GridCell bestChoice = chooseBestConnection(firedCell1, firedCell2, firedCell3, firedCell4);
-		
-		//TrackCell(firedCell0);
-		
-		
-		/*if(bestChoice == null)
-			return null;*/
-
-		if(bestChoice ==firedCell1){
-			if(firedCell0.weight==0){
-				firedCell0.lastBlock=currentState;
-				firedCell0.activeBlock=currentState;
-				firedCell0.minimumWeight=1;
-				firedCell0.weight=1;
-			}else{
-				firedCell0.activeBlock=currentState;
-				if(firedCell0.lastBlock!=firedCell0.activeBlock){
-					firedCell0.lastBlock=firedCell0.activeBlock;
-					firedCell0.weight=0;
-				}
-				firedCell0.weight++;
-			}
-			if(firedCell1.weight==0){
-				firedCell1.lastBlock=currentState1Xm1Y;
-				firedCell1.activeBlock=currentState;
-				firedCell1.weight=1;
-			}else{
-				firedCell1.activeBlock=currentState1Xm1Y;
-				if(firedCell1.lastBlock!=firedCell1.activeBlock){
-					firedCell1.lastBlock=firedCell1.activeBlock;
-					firedCell1.weight=0;
-				}
-				firedCell1.weight++;
-			}
-			return realMaze.returnBlock(currentState.xDimention - 1, currentState.yDimention);
-		}else if(bestChoice == firedCell2){
-			if(firedCell0.weight==0){
-				firedCell0.lastBlock=currentState;
-				firedCell0.activeBlock=currentState;
-				firedCell0.weight=1;
-			}else{
-				firedCell0.activeBlock=currentState;
-				if(firedCell0.lastBlock!=firedCell0.activeBlock){
-					firedCell0.lastBlock=firedCell0.activeBlock;
-					firedCell0.weight=0;
-				}
-				firedCell0.weight++;
-			}
-			if(firedCell2.weight==0){
-				firedCell2.lastBlock=currentState2Xp1Y;
-				firedCell2.activeBlock=currentState;
-				firedCell2.weight=1;
-			}else{
-				firedCell2.activeBlock=currentState2Xp1Y;
-				if(firedCell2.lastBlock!=firedCell2.activeBlock){
-					firedCell2.lastBlock=firedCell2.activeBlock;
-					firedCell2.weight=0;
-				}
-				firedCell2.weight++;
-			}
-			return realMaze.returnBlock(currentState.xDimention + 1, currentState.yDimention);
-		}else if(bestChoice == firedCell3){
-			if(firedCell0.weight==0){
-				firedCell0.lastBlock=currentState;
-				firedCell0.activeBlock=currentState;
-				firedCell0.weight=1;
-			}else{
-				firedCell0.activeBlock=currentState;
-				if(firedCell0.lastBlock!=firedCell0.activeBlock){
-					firedCell0.lastBlock=firedCell0.activeBlock;
-					firedCell0.weight=0;
-				}
-				firedCell0.weight++;
-			}
-			if(firedCell3.weight==0){
-				firedCell3.lastBlock=currentState3XYm1;
-				firedCell3.activeBlock=currentState;
-				firedCell3.weight=1;
-			}else{
-				firedCell3.activeBlock=currentState3XYm1;
-				if(firedCell3.lastBlock!=firedCell3.activeBlock){
-					firedCell3.lastBlock=firedCell3.activeBlock;
-					firedCell3.weight=0;
-				}
-				firedCell3.weight++;
-			}
-			return realMaze.returnBlock(currentState.xDimention, currentState.yDimention - 1);
-		}else if(bestChoice == firedCell4){
-			if(firedCell0.weight==0){
-				firedCell0.lastBlock=currentState;
-				firedCell0.activeBlock=currentState;
-				firedCell0.weight=1;
-			}else{
-				firedCell0.activeBlock=currentState;
-				if(firedCell0.lastBlock!=firedCell0.activeBlock){
-					firedCell0.lastBlock=firedCell0.activeBlock;
-					firedCell0.weight=0;
-				}
-				firedCell0.weight++;
-			}
-			if(firedCell4.weight==0){
-				firedCell4.lastBlock=currentState4XYp1;
-				firedCell4.activeBlock=currentState;
-				firedCell4.weight=1;
-			}else{
-				firedCell4.activeBlock=currentState4XYp1;
-				if(firedCell4.lastBlock!=firedCell4.activeBlock){
-					firedCell4.lastBlock=firedCell4.activeBlock;
-					firedCell4.weight=0;
-				}
-				firedCell4.weight++;
-			}
-			return realMaze.returnBlock(currentState.xDimention, currentState.yDimention + 1);
-		}else{
-			System.out.println("Choose weight is not working correctly, something is wrong!!");
-			return null;
-		}
-		
-	}
-	
 	private Block chooseNextBasic(int mode) {
 		GridCell firedCell0 = null;//this is for current state
 		GridCell firedCell1 = null;
@@ -608,6 +368,7 @@ public class GNMSearch {
 			return null;
 		}
 	}
+
 	public void showSpikes(){
 		for(int j=0;j<realMaze.maxYDimention;j++){
 			for(int i=0;i<realMaze.maxXDimention;i++){
@@ -683,7 +444,6 @@ public class GNMSearch {
 	}
 
 	public GridCell firingCell(int x, int y) {
-		//System.out.println("MaxY:"+realModule.maxXDimention);
 		int colDis=y/realModule.maxYDimention;
 		int dMr=0;
 		int dMc=0;
@@ -691,28 +451,11 @@ public class GNMSearch {
 			dMr = x % realModule.maxXDimention;
 			dMc = y % realModule.maxYDimention;
 		}else{
-			dMr = (x+realModule.w) % realModule.maxXDimention;
+			dMr = (x+realModule.h) % realModule.maxXDimention;
 			dMc = y % realModule.maxYDimention;
 		}
 		
 		return realModule.returnBlock(dMr,dMc);
-	}
-}
-
-class WeightedGrid{
-	double w=-1.0;
-	GridCell gc;
-}
-
-class wgComparator implements Comparator<WeightedGrid>{
-	@Override
-	public int compare(WeightedGrid wg1, WeightedGrid wg2){
-		if(wg1.w > wg2.w)
-			return 1;
-		else if(wg1.w == wg2.w)
-			return 0;
-		else
-			return -1;
 	}
 }
 

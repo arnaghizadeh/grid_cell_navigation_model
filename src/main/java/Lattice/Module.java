@@ -4,12 +4,12 @@ public class Module {
     public GridCell[][] module;
     public int maxXDimention = -1;
     public int maxYDimention = -1;
-    public int w = -1;
+    public int h = -1;
 
-    public Module(int w) {
-        this.w = w;
-        maxXDimention = 2 * w;
-        maxYDimention = 2 * w - 1;
+    public Module(int h) {
+        this.h = h;
+        maxXDimention = 2 * h;
+        maxYDimention = 2 * h - 1;
         module = new GridCell[maxXDimention][maxYDimention];
 
         int label = 0;
