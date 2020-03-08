@@ -23,11 +23,13 @@ public class Main {
 
         /*QLearning ql = new QLearning(ma);
         ql.findPath();
+        ma.showMaze();
+
+        /*LRTA lrta = new LRTA(ma);
+		lrta.findPath();
         ma.showMaze();*/
 
-        LRTA lrta = new LRTA(ma);
-		lrta.findPath();
-        ma.showMaze();
+
 
     }
 
