@@ -30,7 +30,7 @@ ma.showMaze();
 ```
 
 ### Algorithms
-In this implementation, four extra algorithms are supported, LRTA*, QLearning, Backtrack which can be run with:
+In this implementation, four extra algorithms are supported, LRTA*, QLearning, Backtrack, and IDDFS which can be run with:
 
 ```
 QLearning ql = new QLearning(ma);
@@ -43,6 +43,10 @@ ma.showMaze();
 
 Backtrack bt = new Backtrack(ma);
 bt.findPath();
+ma.showMaze();
+
+IDDFS iddfs = new IDDFS(ma);
+iddfs.findPath();
 ma.showMaze();
 ```
 

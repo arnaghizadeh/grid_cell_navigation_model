@@ -1,11 +1,8 @@
 //Backtrack Search is DFS
 package Search;
 
-import GNM.P;
 import Lattice.Block;
 import Lattice.Maze;
-
-import java.util.Stack;
 
 public class Backtrack {
     Maze realMaze;

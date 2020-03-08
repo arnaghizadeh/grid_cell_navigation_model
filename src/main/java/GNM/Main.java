@@ -19,7 +19,7 @@ public class Main {
 
 
         Maze ma = new Maze(10, 10, 5, 0, 0, 5, 5);
-        //ma.showMaze();
+        ma.showMaze();
 
         /*QLearning ql = new QLearning(ma);
         ql.findPath();
@@ -29,8 +29,12 @@ public class Main {
 		lrta.findPath();
         ma.showMaze();*/
 
-        Backtrack bt = new Backtrack(ma);
+       /* Backtrack bt = new Backtrack(ma);
         bt.findPath();
+        ma.showMaze();*/
+
+        IDDFS iddfs = new IDDFS(ma);
+        iddfs.findPath();
         ma.showMaze();
 
     }
