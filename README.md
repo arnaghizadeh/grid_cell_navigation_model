@@ -1,24 +1,22 @@
 ### Grid cell navigational model
-Official implementation of the grid cell navigation model. The code is written with pure Java. With this code you can create different types of mazes and run a navigation algorithm with the created mazes. This could be used as a simulator for Grid cell, firing, a play ground to implement you own method, doing research in robotic etc. You can read about this method in [Grid cell navigation model](https://arnaghizadeh.github.io/papers/GNM/GNM.html) webpage. 
+Official implementation of the grid cell navigation model. The code is written with pure Java. With this code, you can create different types of mazes and run a navigation algorithm with the created mazes. This could be used as a simulator for the Grid cell firing, a playground to implement your own method, doing research in robotic, etc. You can read about this method in [Grid cell navigation model](https://arnaghizadeh.github.io/papers/GNM/GNM.html) webpage. 
 
 
 
 ### Maze
 You can create three types of mazes:
 
-1 - Created an empty maze with only open blocks and nothing else, the size is determined with x, y:
+1 - Create an empty maze with `open(#)` blocks and nothing else, the size is determined with x, y:
 ```
 Maze ma  = new Maze(x,y);
 ```
 
-2 - Created a proper maze with open, closed, start and end  blocks, the size is determined with x, y and probability of closed blocks with p:
+2 - Create a proper maze with `open(#)`, `closed(*)`, `start(s)`, and `end(e)` blocks, the size is determined with x, y, and the probability of closed blocks with p:
 ```
 Maze ma  = new Maze(x,y, p);
 ```
 
-
-3 - Created a proper maze with open, closed, start and end  blocks, the size is determined with x, y and probability of closed blocks with p, you can fixate
-the start position with startX, startY and end position with endX, endY.
+3 - Created a proper maze with `open(#)`, `closed(*)`, `start(s)`, and `end(e)`  blocks, the size is determined with x, y, and the probability of closed blocks with p, you can fixate the start position with startX, startY and end position with endX, endY.
 
 
 ```
@@ -31,7 +29,7 @@ ma.showMaze();
 ```
 
 ### Exploration Algorithms
-In this implementation, four extra algorithms are supported, LRTA*, QLearning, Backtrack, and IDDFS which can be run with:
+In this implementation, four extra algorithms are supported, `LRTA*`, `Q-Learning`, `Backtrack`, and `IDDFS`, which can be run with:
 
 ```
 QLearning ql = new QLearning(ma);
@@ -53,12 +51,13 @@ ma.showMaze();
 ```
 
 ### GNM Algorithm
-The Grid cell are packed in the modules. Similarly, for this algorithm to work, we have to also create a module first. The modules need a initial value of `h`. This is how we create a module
+The Grid cells are packed in the modules. Similarly, for this algorithm to work, we have to also create a module first. To create the modules, an initial value (`h`) has to be used. This is how to create a module:
+
 ```
 Module mo = new Module(10);
 ```
 
-We have two versions of the algorithm, GNM Basic and GNM. The GNM should always be used in practice. However, learning GNM Basic is a little easier than the complete GNM. To choose between them we use a mode option. The `0` is for GNM Basic and `1` is for GNM. We need both module and maze to perform the search.
+There are two versions of the algorithm, GNM Basic and GNM. The GNM should always be used in practice. However, learning GNM Basic is a little easier than complete GNM. To choose between them, we use a mode option. The mode`0` is used for GNM Basic, and mode `1` is used for GNM. We need two objects, a module and a maze to perform the search.
 
 ```
 GNMSearch hs = new GNMSearch(ma,mo,mode);
