@@ -141,7 +141,7 @@ The output is the grid numbers. This presentation is the final grids for the rou
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ```
 ### Installation
-For ease of use, the project is based on Maven. Any environment that supports Maven can run the program. For development, we used inlliJ IDE, but any environment can be used. If you want to run the program from the command line, Maven should be installed. 
+For ease of use, the project is based on Maven. Any environment that supports Maven can run the program. For development, we used IntelliJ IDE, but any environment can be used. If you want to run the program from the command line, Maven should be installed. Here we provide one installation example for ubuntu command line.
 
 First, make sure you have Maven installed:
 
