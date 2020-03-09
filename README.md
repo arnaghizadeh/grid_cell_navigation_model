@@ -73,9 +73,91 @@ mode = 0 #GNM Basic
 mode = 1 #GNM
 mode = 2 #GNM if mo < ma
 ```
+### Running an example
+Following provides a complete example of the program running with its outcomes of the maze before routing and the maze after routing:
+```
+Maze ma = new Maze(10, 10, 5, 0, 0, 5, 5);
+ma.showMaze();
+
+System.out.println();
+Module mo = new Module(10);
+GNMSearch hs = new GNMSearch(ma,mo,0);
+hs.findPath();
+ma.showMaze();
+mo.showModule();
+```
+The output is:
+```
+s # # # # # # # # # 
+# # # # # # # # # # 
+# # # # # # # # # # 
+# # # # # # # # # # 
+# # # # # # # * # # 
+# # # # # e # # # # 
+* # # # # # # * # # 
+# # # # # # # # # # 
+# # # # # # # # # # 
+# # # # * # # # # # 
+
+s . . . . . # # # # 
+. . # . . . # # # # 
+# # # # . # # # # # 
+# # # # . # # # # # 
+# # # # . # # * # # 
+# # # # . e # # # # 
+* # # # # # # * # # 
+# # # # # # # # # # 
+# # # # # # # # # # 
+# # # # * # # # # # 
+```
 
 ### Grid cell simulator
+The module can, also show its out as follows. 
+```
+mo.showModule();
+```
+The output is the grid numbers. The is the final grids for the routing example shown above. For using the program as a grid simulator, the module steps can show the grid cell values in every step of the way.   
+```
 
+2	2	2	2	2	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+2	2	0	2	4	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	2	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+```
+### Installation
+For ease of use the project is Maven based. Any environment that supports Maven can run the program. For development we used inlliJ IDE, so the easiest way to run the program is probably to use inlliJ IDE and simply import the project ater cloning. If you want to use command line, Maven should be installed. 
+
+For runing the program in ubuntu, first make sure you have Maven installed:
+
+```
+sudo apt-get update
+sudo apt-get install maven
+```
+Clone the program
+```
+git clone https://github.com/arnaghizadeh/grid_cell_navigation_model.git
+cd grid_cell_navigation_model/
+```
+Run the program
+```
+mvn compile
+mvn exec:java -Dexec.mainClass=GNM.Main
+```
 ### Citation
 
 The code is distributed under MIT licence. However, if you find this code useful, we would appreciate it if you consider citing the accompanied paper:

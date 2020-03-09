@@ -38,11 +38,13 @@ public class Main {
         iddfs.findPath();
         ma.showMaze();*/
 
-        /*
+        /**/
+        System.out.println();
         Module mo = new Module(10);
         GNMSearch hs = new GNMSearch(ma,mo,0);
         hs.findPath();
-        ma.showMaze();*/
+        ma.showMaze();
+        mo.showModule();
     }
 
 }
