@@ -1,5 +1,5 @@
 ### Grid cell navigational model
-Official implementation of the grid cell navigation model. The code is written with pure Java. With this code you can create different types of mazes and run a navigation algorithm with the created mazes. This could be used as a simulator for Grid cell, firing, a play ground to implement you own method, doing research in robotic etc. You can read about this method in (GNM)[https://arnaghizadeh.github.io/papers/GNM/GNM.html] webpage. 
+Official implementation of the grid cell navigation model. The code is written with pure Java. With this code you can create different types of mazes and run a navigation algorithm with the created mazes. This could be used as a simulator for Grid cell, firing, a play ground to implement you own method, doing research in robotic etc. You can read about this method in [Grid cell navigation model](https://arnaghizadeh.github.io/papers/GNM/GNM.html) webpage. 
 
 
 
@@ -49,10 +49,32 @@ ma.showMaze();
 IDDFS iddfs = new IDDFS(ma);
 iddfs.findPath();
 ma.showMaze();
+
 ```
 
 ### GNM Algorithm
+The Grid cell are packed in the modules. Similarly, for this algorithm to work, we have to also create a module first. The modules need a initial value of `h`. This is how we create a module
+```
+Module mo = new Module(10);
+```
 
+We have two versions of the algorithm, GNM Basic and GNM. The GNM should always be used in practice. However, learning GNM Basic is a little easier than the complete GNM. To choose between them we use a mode option. The `0` is for GNM Basic and `1` is for GNM. We need both module and maze to perform the search.
+
+```
+GNMSearch hs = new GNMSearch(ma,mo,mode);
+hs.findPath();
+ma.showMaze();
+```
+
+If the `h` is big enough, the cells in the modules are equal or bigger than the environment. In this case, the algorithm can find destination faster. The modes `0`, `1` are for these cases. When environment could be bigger than the module we have to use mode `2` which provides some randomness in decision making.
+
+```
+mode = 0 #GNM Basic
+mode = 1 #GNM
+mode = 2 #GNM if mo < ma
+```
+
+### Grid cell simulator
 
 ### Citation
 
