@@ -65,7 +65,7 @@ hs.findPath();
 ma.showMaze();
 ```
 
-If the `h` is big enough, the cells in the modules are equal or bigger than the environment. In this case, the algorithm can find destination faster. The modes `0`, `1` are for these cases. When environment could be bigger than the module we have to use mode `2` which provides some randomness in decision making.
+If the `h` is big enough, the cells in the module are equal or bigger than the environment. In this case, the algorithm can find the destination faster. The modes `0`, `1` are for these cases. When the environment could be bigger than the module, we have to use mode `2`, which provides some randomness in decision making.
 
 ```
 mode = 0 #GNM Basic
@@ -111,13 +111,15 @@ s . . . . . # # # #
 ```
 
 ### Grid cell simulator
-The module can, also show its out as follows. 
+The module can also show its output with the following function. 
+
+ 
 ```
 mo.showModule();
 ```
-The output is the grid numbers. The is the final grids for the routing example shown above. For using the program as a grid simulator, the module steps can show the grid cell values in every step of the way.   
+The output is the grid numbers. This presentation is the final grids for the routing example shown above. For using the program as a grid simulator,  the code can be modified to show the grid cell values in every step of the way.
+   
 ```
-
 2	2	2	2	2	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
 2	2	0	2	4	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
 0	0	0	0	2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
@@ -139,27 +141,28 @@ The output is the grid numbers. The is the final grids for the routing example s
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ```
 ### Installation
-For ease of use the project is Maven based. Any environment that supports Maven can run the program. For development we used inlliJ IDE, so the easiest way to run the program is probably to use inlliJ IDE and simply import the project ater cloning. If you want to use command line, Maven should be installed. 
+For ease of use, the project is based on Maven. Any environment that supports Maven can run the program. For development, we used inlliJ IDE, but any environment can be used. If you want to run the program from the command line, Maven should be installed. 
 
-For runing the program in ubuntu, first make sure you have Maven installed:
+First, make sure you have Maven installed:
 
 ```
 sudo apt-get update
 sudo apt-get install maven
 ```
-Clone the program
+Clone the program and enter the folder:
 ```
 git clone https://github.com/arnaghizadeh/grid_cell_navigation_model.git
 cd grid_cell_navigation_model/
 ```
-Run the program
+Run the program:
 ```
 mvn compile
 mvn exec:java -Dexec.mainClass=GNM.Main
 ```
+
 ### Citation
 
-The code is distributed under MIT licence. However, if you find this code useful, we would appreciate it if you consider citing the accompanied paper:
+The code is distributed under MIT license. However, if you find this code useful, we would appreciate it if you consider citing the accompanying paper:
 
 ```
 @article{naghizadeh2020gnm,
