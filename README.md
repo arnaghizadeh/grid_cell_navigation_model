@@ -1,11 +1,12 @@
 ### Grid cell navigational model
-Official implementation of the grid cell navigational model. The code is written with pure Java. With this code you can create different types of mazes and run a navigational algorithm with the created mazes. 
+Official implementation of the grid cell navigation model. The code is written with pure Java. With this code you can create different types of mazes and run a navigation algorithm with the created mazes. This could be used as a simulator for Grid cell, firing, a play ground to implement you own method, doing research in robotic etc. You can read about this method in (GNM)[https://arnaghizadeh.github.io/papers/GNM/GNM.html] webpage. 
+
+
 
 ### Maze
 You can create three types of mazes:
 
 1 - Created an empty maze with only open blocks and nothing else, the size is determined with x, y:
-
 ```
 Maze ma  = new Maze(x,y);
 ```
